@@ -35,8 +35,8 @@ final class DefaultHandlerContext extends AbstractHandlerContext{
 
 
     @Override
-    public boolean isCurrentModel() {
-        return handler.isCurrentModel();
+    public boolean isNextHandlerContext() {
+        return handler.isCurrentModel(this);
     }
 
     @Override

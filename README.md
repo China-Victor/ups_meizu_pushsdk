@@ -286,14 +286,15 @@ UpsPushMessageReceiver是一个抽象的BroadcastReceiver类，为了统一各�
  [license-image]: https://img.shields.io/badge/License-MIT-yellow.svg
  [license]: https://opensource.org/licenses/MIT
  
- [release-image]: http://img.shields.io/badge/release-1.0.4-blue.svg?style=flat
+
+ [release-image]: http://img.shields.io/badge/release-1.1.0-blue.svg?style=flat
  [releases]: https://bintray.com/meizupush/PushSDK/ups_meizu_pushsdk
  
  [coveralls-image]: https://www.travis-ci.org/comsince/ups_meizu_pushsdk.svg?branch=master
  [coveralls]: https://coveralls.io/github/comsince/snowplow-android-tracker?branch=master
  
- [travis]: https://www.travis-ci.org/comsince/ups_meizu_pushsdk
- [travis-image]: https://www.travis-ci.org/comsince/ups_meizu_pushsdk.svg?branch=master
+ [travis]: https://travis-ci.org/MEIZUPUSH/ups_meizu_pushsdk
+ [travis-image]: https://travis-ci.org/MEIZUPUSH/ups_meizu_pushsdk.svg?branch=master
  
  [java-doc-image]: https://img.shields.io/badge/javadoc-release-brightgreen.svg
- [java-doc]: https://comsince.github.io/ups_meizu_pushsdk/index.html
+ [java-doc]: https://meizupush.github.io/ups_meizu_pushsdk/index.html
