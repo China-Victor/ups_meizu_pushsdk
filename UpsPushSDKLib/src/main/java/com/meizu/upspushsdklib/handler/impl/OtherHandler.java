@@ -78,7 +78,7 @@ public class OtherHandler extends MeizuHandler {
 
     @Override
     public boolean isCurrentModel(HandlerContext ctx) {
-        return !UpsUtils.isMeizu(ctx.pipeline().context()) && !UpsUtils.isHuaWei() &&  !UpsUtils.isXiaoMi();
+        return UpsUtils.isOther(ctx.pipeline().context());
     }
 
     @Override

@@ -43,6 +43,7 @@ import com.meizu.upspushsdklib.UpsPushMessageType;
 import com.meizu.upspushsdklib.receiver.dispatcher.CommandMessageDispatcher;
 import com.meizu.upspushsdklib.receiver.dispatcher.UpsPushMessageDispatcher;
 import com.meizu.upspushsdklib.util.UpsLogger;
+import com.meizu.upspushsdklib.util.UpsUtils;
 
 
 public final class MzUpsPushMessageReceiver extends MzPushMessageReceiver{
@@ -102,7 +103,7 @@ public final class MzUpsPushMessageReceiver extends MzPushMessageReceiver{
         UpsCommandMessage upsCommandMessage = UpsCommandMessage.builder()
                 .code(Integer.valueOf(subAliasStatus.getCode()))
                 .message(subAliasStatus.getMessage())
-                .company(Company.MEIZU)
+                .company(UpsUtils.isOther(context) ? Company.OTHER: Company.MEIZU)
                 .commandResult(String.valueOf(subAliasStatus.getAlias()))
                 .commandType(TextUtils.isEmpty(subAliasStatus.getAlias()) ? CommandType.UNSUBALIAS : CommandType.SUBALIAS)
                 .extra(subAliasStatus)

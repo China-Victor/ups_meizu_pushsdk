@@ -125,4 +125,11 @@ public class UpsUtils {
     public static boolean isXiaoMi(){
         return "Xiaomi".equals(Build.MODEL) || "Xiaomi".equals(Build.MANUFACTURER);
     }
+
+    /**
+     * 是否为除魅族，小米，华为的其他机型
+     * */
+    public static boolean isOther(Context context){
+        return !UpsUtils.isMeizu(context) && !UpsUtils.isHuaWei() && !UpsUtils.isXiaoMi();
+    }
 }
