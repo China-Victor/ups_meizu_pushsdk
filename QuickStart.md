@@ -47,14 +47,48 @@
       android:grantUriPermissions="true" >
    </provider>
 
-   <!-- 统一推送配置 -->
-   <receiver android:name="com.meizu.upspushdemo.UpsReceiver">
+```
+
+#### 实现UpsPushReceiver
+应用只需要继承`UpsPushMessageReceiver`,覆盖其中的方法即可,如下
+```
+public class UpsReceiver extends UpsPushMessageReceiver{
+    @Override
+    public void onThroughMessage(Context context, UpsPushMessage upsPushMessage) {
+    
+    }
+
+    @Override
+    public void onNotificationClicked(Context context, UpsPushMessage upsPushMessage) {
+    
+    }
+
+    @Override
+    public void onNotificationArrived(Context context, UpsPushMessage upsPushMessage) {
+    
+    }
+
+    @Override
+    public void onNotificationDeleted(Context context, UpsPushMessage upsPushMessage) {
+    
+    }
+
+    @Override
+    public void onUpsCommandResult(Context context, UpsCommandMessage upsCommandMessage) {
+        
+    }
+```
+并在`AndroidManifest.xml`中配置此组件，此组件的实际路径以此类的实际路径为准，下面包名只是示例说明
+
+```
+<!-- 统一推送配置 -->
+<!-- the following 4 ${PACKAGE_NAME} should be changed to your actual package name where the implemented UpsReceiver belong to -->
+   <receiver android:name="${PACKAGE_NAME}.UpsReceiver">
      <intent-filter>
        <!-- 接收push消息 -->
        <action android:name="com.meizu.ups.push.intent.MESSAGE" />
      </intent-filter>
    </receiver>
-
 ```
 
 ### 1.3 应用配置信息
@@ -72,24 +106,19 @@
 
 魅族，华为的包默认依赖相关的artifactory库，需要在你的工程根目录加入如下maven url配置
 ```
-       //魅族的pushsdk存放在jcenter中
-       jcenter()
-       //华为的库存放其私有仓库中
-       maven {
-            url 'http://developer.huawei.com/repo/'
-        }
+  //魅族的pushsdk存放在jcenter中
+  jcenter()
+  //华为的库存放其私有仓库中
+  maven {
+     url 'http://developer.huawei.com/repo/'
+  }
 ```
 小米的库需要手动将其jar放到工程的lib目录下，小米的pushsdk jar[下载](https://dev.mi.com/mipush/downpage/)
 
-### 1.5 UpsPushSDK库引入
-
+最后在你的工程build.gradle配置ups-push的依赖
 ```
-compile ('com.meizu.flyme.internet:push-ups:1.0.4@aar'){
-       //当指定aar类型时注意要设置transitive设置为true，不然依赖关系无法传递
-        transitive=true
-}
+compile 'com.meizu.flyme.internet:push-ups:1.1.+'
 ```
-
 
 ## 二 统一推送平台配置
 
@@ -101,11 +130,11 @@ compile ('com.meizu.flyme.internet:push-ups:1.0.4@aar'){
 
 
 
-### 2.2 应用信息本地设置测试
+### 2.2 应用信息本地设置测试[可选]
 
 应用也可以在AndroidManifest配置`AppID`,`AppKey`信息方便本地测试，`ups-pushsdk`会优先读取本地`AndroidManifest`中的配置信息
 
-**NOTE:** 小米的`APP_ID`,`APP_KEY`需要进行字符转义,不然无法正确读出,例如`android:value="\02882303761517631454"`
+**NOTE:** 小米的`APP_ID`,`APP_KEY`需要进行字符转义,不然无法正确读出,例如小米的`appid`为`2882303761517631454`需要如下配置 `android:value="\02882303761517631454"`
 
 ```     
         <meta-data
